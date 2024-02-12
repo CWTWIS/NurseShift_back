@@ -9,3 +9,69 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+enum TypeOfDepartment {
+  IPD
+  OPD
+  ORTHO
+  ER
+  ICU
+  OR
+}
+
+enum TypeOfPosition {
+  HEAD
+  REGISTERED
+  PRACTICAL
+  AID
+}
+
+enum TypeOfShift {
+  MORNING
+  AFTERNOON
+  MIDNIGHT
+}
+
+model User {
+  id           Int        @id @default(autoincrement())
+  email        String     @unique
+  password     String     @unique
+  firstName    String     @map("first_name")
+  lastName     String     @map("last_name")
+  mobile       String     @unique @db.VarChar(10)
+  profileImage String?    @map("profile_image")
+  createdAt    DateTime   @default(now()) @map("created_at") @db.Timestamp(0)
+  updatedAt    DateTime   @updatedAt @map("updated_at") @db.Timestamp(0)
+  positionId   Int        @map("position_id")
+  position     Position   @relation(fields: [positionId], references: [id])
+  departmentId Int        @map("department_id")
+  department   Department @relation(fields: [departmentId], references: [id])
+  shifts       Shift[]
+}
+
+model Position {
+  id             Int            @id @default(autoincrement())
+  typeOfPosition TypeOfPosition
+  user           User[]
+}
+
+model Department {
+  id               Int              @id @default(autoincrement())
+  typeOfDepartment TypeOfDepartment
+  user             User[]
+}
+
+model ShiftType {
+  id          Int         @id @default(autoincrement())
+  typeOfShift TypeOfShift
+  shift       Shift[]
+}
+
+model Shift {
+  id          Int       @id @default(autoincrement())
+  userId      Int       @map("user_id")
+  user        User      @relation(fields: [userId], references: [id])
+  date        DateTime
+  shiftTypeId Int       @map("shift_type_id")
+  shiftType   ShiftType @relation(fields: [shiftTypeId], references: [id])
+}
