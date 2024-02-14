@@ -7,6 +7,8 @@ const error = require("./middlewares/error");
 const notFound = require("./middlewares/not-found");
 
 const authRoute = require("./routes/auth-route");
+const positionRoute = require("./routes/position-route");
+const departmentRoute = require("./routes/department-route");
 
 const app = express();
 
@@ -16,6 +18,8 @@ app.use(limiter);
 app.use(morgan("dev"));
 
 app.use("/auth", authRoute);
+app.use("/position", positionRoute);
+app.use("/department", departmentRoute);
 
 app.use(notFound);
 app.use(error);

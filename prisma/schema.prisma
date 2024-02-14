@@ -51,19 +51,19 @@ model User {
 
 model Position {
   id             Int            @id @default(autoincrement())
-  typeOfPosition TypeOfPosition
+  typeOfPosition TypeOfPosition @map("type_of_position")
   user           User[]
 }
 
 model Department {
   id               Int              @id @default(autoincrement())
-  typeOfDepartment TypeOfDepartment
+  typeOfDepartment TypeOfDepartment @map("type_of_department")
   user             User[]
 }
 
 model ShiftType {
   id          Int         @id @default(autoincrement())
-  typeOfShift TypeOfShift
+  typeOfShift TypeOfShift @map("type_of_shifft")
   shift       Shift[]
 }
 
