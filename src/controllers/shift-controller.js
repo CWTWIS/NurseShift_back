@@ -24,6 +24,16 @@ exports.createShift = catchError(async (req, res, next) => {
   res.status(201).json({ shift });
 });
 
-exports.getAllShift = catchError(async (req, res, next) => {});
+exports.getAllShiftsInTheSameDepartment = catchError(async (req, res, next) => {
+  const userDepartmentId = req.user.departmentId;
+  const shifts = await shiftService.getAllShiftByDepartmentId(userDepartmentId);
+  res.status(201).json({ shifts });
+});
+
+exports.getAllShiftsByUserId = catchError(async (req, res, next) => {
+  const userId = req.user.id;
+  const shifts = await shiftService.getAllShiftByUserId(userId);
+  res.status(201).json({ shifts });
+});
 exports.deleteShift = catchError(async (req, res, next) => {});
 exports.editShift = catchError(async (req, res, next) => {});

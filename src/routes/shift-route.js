@@ -13,8 +13,14 @@ router.post(
 router.get(
   "/",
   authenticate,
-  manageShiftAuthenticate,
-  shiftController.getAllShift
+  // manageShiftAuthenticate,
+  shiftController.getAllShiftsInTheSameDepartment
+);
+router.get(
+  "/me",
+  authenticate,
+  // manageShiftAuthenticate,
+  shiftController.getAllShiftsByUserId
 );
 
 module.exports = router;
