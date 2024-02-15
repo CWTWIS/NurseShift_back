@@ -71,7 +71,7 @@ model Shift {
   id          Int       @id @default(autoincrement())
   userId      Int       @map("user_id")
   user        User      @relation(fields: [userId], references: [id])
-  date        DateTime
+  date        DateTime  @db.Date
   shiftTypeId Int       @map("shift_type_id")
   shiftType   ShiftType @relation(fields: [shiftTypeId], references: [id])
 }

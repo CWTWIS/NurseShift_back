@@ -10,7 +10,7 @@ const authRoute = require("./routes/auth-route");
 const positionRoute = require("./routes/position-route");
 const departmentRoute = require("./routes/department-route");
 const shiftTypeRoute = require("./routes/shift-type-route");
-const scheduleRoute = require("./routes/schedule-route");
+const shiftRoute = require("./routes/shift-route");
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.use("/auth", authRoute);
 app.use("/position", positionRoute);
 app.use("/department", departmentRoute);
 app.use("/shiftType", shiftTypeRoute);
-app.use("/schedule", scheduleRoute);
+app.use("/shift", shiftRoute);
 
 app.use(notFound);
 app.use(error);
