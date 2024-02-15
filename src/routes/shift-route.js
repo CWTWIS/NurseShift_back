@@ -22,5 +22,17 @@ router.get(
   // manageShiftAuthenticate,
   shiftController.getAllShiftsByUserId
 );
+router.patch(
+  "/:shiftId",
+  authenticate,
+  manageShiftAuthenticate,
+  shiftController.editShift
+);
+router.delete(
+  "/:shiftId",
+  authenticate,
+  manageShiftAuthenticate,
+  shiftController.deleteShift
+);
 
 module.exports = router;
