@@ -5,3 +5,6 @@ exports.getAllPosition = () =>
 
 exports.getAllDepartment = () =>
   prisma.department.findMany({ select: { id: true, typeOfDepartment: true } });
+
+exports.getAllShiftType = () =>
+  prisma.shiftType.findMany({ select: { id: true, typeOfShift: true } });

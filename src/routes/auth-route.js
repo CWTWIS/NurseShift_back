@@ -1,6 +1,6 @@
 const express = require("express");
 const authController = require("../controllers/auth-controller");
-const positionController = require("../controllers/position-controller");
+
 const {
   validateRegister,
   validateLogin,
@@ -13,6 +13,6 @@ const router = express.Router();
 router.post("/register", validateRegister, authController.register);
 router.post("/login", validateLogin, authController.login);
 router.get("/me", authenticate, authController.getMe);
-// router.get("/position", positionController.getAllPosition);
+router.get("/all", authenticate, authController.getUsersInTheSameDepartment);
 
 module.exports = router;

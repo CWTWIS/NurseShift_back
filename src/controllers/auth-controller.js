@@ -7,7 +7,7 @@ const jwtService = require("../services/jwt-service");
 exports.register = catchError(async (req, res, next) => {
   const existedUser = await userService.findExistedUserByEmail(req.body.email);
   if (existedUser) {
-    createError("EMAIL_In_USE", 400);
+    createError("EMAIL_IN_USE", 400);
   }
   console.log(req.body);
   req.body.password = await hashService.hash(req.body.password);
@@ -46,3 +46,10 @@ exports.login = catchError(async (req, res, next) => {
 exports.getMe = (req, res, next) => {
   res.status(200).json({ user: req.user });
 };
+
+exports.getUsersInTheSameDepartment = catchError(async (req, res, next) => {
+  const allUsers = await userService.findUserInTheSameDepartment(
+    req.user.departmentId
+  );
+  res.status(200).json({ allUsers });
+});

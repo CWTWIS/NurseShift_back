@@ -9,6 +9,8 @@ const notFound = require("./middlewares/not-found");
 const authRoute = require("./routes/auth-route");
 const positionRoute = require("./routes/position-route");
 const departmentRoute = require("./routes/department-route");
+const shiftTypeRoute = require("./routes/shift-type-route");
+const scheduleRoute = require("./routes/schedule-route");
 
 const app = express();
 
@@ -20,6 +22,8 @@ app.use(morgan("dev"));
 app.use("/auth", authRoute);
 app.use("/position", positionRoute);
 app.use("/department", departmentRoute);
+app.use("/shiftType", shiftTypeRoute);
+app.use("/schedule", scheduleRoute);
 
 app.use(notFound);
 app.use(error);
