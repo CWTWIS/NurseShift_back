@@ -4,6 +4,7 @@ exports.createShift = (data) => prisma.shift.create({ data });
 exports.getAllShiftByDepartmentId = (userDepartmentId) =>
   prisma.shift.findMany({
     where: { user: { departmentId: userDepartmentId } },
+    include: { shiftType: true },
   });
 exports.getAllShiftByUserId = (userId) =>
   prisma.shift.findMany({

@@ -13,4 +13,7 @@ exports.updateUserById = (data, id) =>
   prisma.user.update({ data, where: { id } });
 
 exports.findUserInTheSameDepartment = (departmentId) =>
-  prisma.user.findMany({ where: { departmentId } });
+  prisma.user.findMany({
+    where: { departmentId },
+    include: { position: true, department: true },
+  });

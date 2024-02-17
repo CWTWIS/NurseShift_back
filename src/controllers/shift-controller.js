@@ -63,7 +63,10 @@ exports.deleteShift = catchError(async (req, res, next) => {
     return createError("shift not found", 404);
   }
   if (existingShift.user.departmentId !== userDepartmentId) {
-    return createError("User does not have permission to edit this shift", 403);
+    return createError(
+      "User does not have permission to delete this shift",
+      403
+    );
   }
   await shiftService.deleteShift(shiftId);
   res.status(204).send();
