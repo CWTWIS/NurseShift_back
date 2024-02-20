@@ -5,10 +5,12 @@ exports.getAllShiftByDepartmentId = (userDepartmentId) =>
   prisma.shift.findMany({
     where: { user: { departmentId: userDepartmentId } },
     include: { shiftType: true },
+    orderBy: { shiftTypeId: "asc" },
   });
 exports.getAllShiftByUserId = (userId) =>
   prisma.shift.findMany({
     where: { user: { id: userId } },
+    include: { shiftType: true },
   });
 exports.getShiftByShiftId = (shiftId) =>
   prisma.shift.findUnique({
