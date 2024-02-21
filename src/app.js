@@ -25,6 +25,7 @@ app.use("/public", express.static("public"));
 app.use("/auth", authRoute);
 app.use("/users", authenticate, userRoute);
 app.use("/shift", authenticate, shiftRoute);
+
 app.use("/position", positionRoute);
 app.use("/department", departmentRoute);
 app.use("/shiftType", shiftTypeRoute);
