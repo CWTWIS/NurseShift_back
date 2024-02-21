@@ -36,6 +36,14 @@ exports.getAllShiftsByUserId = catchError(async (req, res, next) => {
   res.status(201).json({ shifts });
 });
 
+exports.getAllShiftsOfSelectedPersonByUserId = catchError(
+  async (req, res, next) => {
+    const { userId } = req.params;
+    const shifts = await shiftService.getAllShiftByUserId(parseInt(userId));
+    res.status(201).json({ shifts });
+  }
+);
+
 exports.editShift = catchError(async (req, res, next) => {
   const { shiftId } = req.params;
   const userDepartmentId = req.user.departmentId;

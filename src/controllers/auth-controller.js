@@ -51,5 +51,6 @@ exports.getUsersInTheSameDepartment = catchError(async (req, res, next) => {
   const allUsers = await userService.findUserInTheSameDepartment(
     req.user.departmentId
   );
+  delete allUsers.password;
   res.status(200).json({ allUsers });
 });

@@ -1,36 +1,45 @@
 const express = require("express");
 const router = express.Router();
-const authenticate = require("../middlewares/authenticate");
+// const authenticate = require("../middlewares/authenticate");
 const manageShiftAuthenticate = require("../middlewares/manage-shift-authenticate");
 const shiftController = require("../controllers/shift-controller");
 
 router.post(
   "/",
-  authenticate,
+  // authenticate,
   manageShiftAuthenticate,
   shiftController.createShift
 );
 router.get(
   "/",
-  authenticate,
+  // authenticate,
   // manageShiftAuthenticate,
   shiftController.getAllShiftsInTheSameDepartment
 );
+
+// router.get(
+//   "/me",
+//   // authenticate,
+//   // manageShiftAuthenticate,
+//   shiftController.getAllShiftsByUserId
+// );
+
 router.get(
-  "/me",
-  authenticate,
+  "/:userId",
+  // authenticate,
   // manageShiftAuthenticate,
-  shiftController.getAllShiftsByUserId
+  shiftController.getAllShiftsOfSelectedPersonByUserId
 );
+
 router.patch(
   "/:shiftId",
-  authenticate,
+  // authenticate,
   manageShiftAuthenticate,
   shiftController.editShift
 );
 router.delete(
   "/:shiftId",
-  authenticate,
+  // authenticate,
   manageShiftAuthenticate,
   shiftController.deleteShift
 );
