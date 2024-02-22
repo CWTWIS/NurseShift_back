@@ -31,18 +31,10 @@ exports.getAllShiftsInTheSameDepartment = catchError(async (req, res, next) => {
 });
 
 exports.getAllShiftsByUserId = catchError(async (req, res, next) => {
-  const userId = req.user.id;
-  const shifts = await shiftService.getAllShiftByUserId(userId);
+  const { userId } = req.params;
+  const shifts = await shiftService.getAllShiftByUserId(parseInt(userId));
   res.status(201).json({ shifts });
 });
-
-exports.getAllShiftsOfSelectedPersonByUserId = catchError(
-  async (req, res, next) => {
-    const { userId } = req.params;
-    const shifts = await shiftService.getAllShiftByUserId(parseInt(userId));
-    res.status(201).json({ shifts });
-  }
-);
 
 exports.editShift = catchError(async (req, res, next) => {
   const { shiftId } = req.params;
