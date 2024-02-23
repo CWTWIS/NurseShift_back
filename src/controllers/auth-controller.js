@@ -9,6 +9,12 @@ exports.register = catchError(async (req, res, next) => {
   if (existedUser) {
     createError("EMAIL_IN_USE", 400);
   }
+  const existedMobile = await userService.findExistedUserByMobile(
+    req.body.mobile
+  );
+  if (existedMobile) {
+    createError("MOBILE_IN_USE", 400);
+  }
   console.log(req.body);
   req.body.password = await hashService.hash(req.body.password);
   const newUser = await userService.createUser(req.body);
